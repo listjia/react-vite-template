@@ -3,6 +3,7 @@ import { a } from "@/text";
 import { Form, Input, Button } from "antd";
 import { useDispatch } from "react-redux";
 import { fetchLogin } from "./store/modules/user";
+import "./test";
 
 function App() {
   const dispatch = useDispatch();
