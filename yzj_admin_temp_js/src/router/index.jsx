@@ -1,24 +1,35 @@
-// src/router/index.tsx
+import { lazy } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Home from "@/pages/Home";
-import About from "@/pages/About";
-import Login from "@/pages/Login";
+import lazyLoad from "./lazyLoad";
+import manageRoutes from "./manage";
+import BasicLayout from "@/components/Layout";
+const Home = lazy(() => import("@/pages/Home"));
+const About = lazy(() => import("@/pages/About"));
+const Login = lazy(() => import("@/pages/Login"));
 
 const routes = [
   {
     path: "/",
     children: [
+      // {
+      //   index: true,
+      //   element: <Navigate to="/home" replace />,
+      // },
       {
         index: true,
-        element: <Home />,
+        element: lazyLoad(<Home />),
       },
       {
         path: "login",
-        element: <Login />,
+        element: lazyLoad(<Login />),
       },
       {
         path: "about",
-        element: <About />,
+        element: lazyLoad(<About />),
+      },
+      {
+        path: "manage",
+        children: manageRoutes,
       },
     ],
   },

@@ -1,11 +1,7 @@
 import { Suspense } from "react";
 
 const lazyLoad = (Component) => {
-  return (
-    <Suspense>
-      <Component />
-    </Suspense>
-  );
+  return <Suspense fallback={<div>Loading...</div>}>{Component}</Suspense>;
 };
 
 export default lazyLoad;
