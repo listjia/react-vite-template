@@ -10,4 +10,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    port: 6789,
+    host: "0.0.0.0",
+    proxy: {},
+  },
 });
