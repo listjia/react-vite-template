@@ -24,12 +24,28 @@ export const column = [
     name: "颜色",
   },
   {
+    field: "len",
+    name: "大小",
+  },
+  {
     field: "length",
     name: "长度",
   },
   {
     field: "shape",
     name: "形状",
+  },
+   {
+    field: "shape1",
+    name: "形状1",
+  },
+   {
+    field: "shape2",
+    name: "形状2",
+  },
+   {
+    field: "shape3",
+    name: "形状3",
   },
   {
     field: "isFav",
@@ -74,8 +90,12 @@ export const getList = () => {
       pro: `生产厂商${i % 5}`,
       address: `地址${i}`,
       color: ["红色", "白色", "蓝色", "绿色", "黄色"][i % 5],
-      length: `${10 + (i % 5)}cm`, // 长度从10cm到14cm
+      length: `${10 + (i % 5)}cm`, 
+      len: `${10 + (i % 5)}cm`, 
       shape: ["圆形", "方形", "三角形"][i % 3],
+      shape1: ["圆形", "方形", "三角形"][i % 3],
+      shape2: ["圆形", "方形", "三角形"][i % 3],
+      shape3: ["圆形", "方形", "三角形"][i % 3],
       isFav: i % 2 === 0,
       price: 10 + (i % 11),
       status: ["在售", "售罄", "预售"][i % 3],
