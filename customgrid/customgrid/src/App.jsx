@@ -1,9 +1,10 @@
-import CustomGrid from "./components/custom-grid"
+// import CustomGrid from "./components/custom-grid"
+import CavasTest1 from "./components/canvas-test1"
 
 function App() {
 
   return (
-    <CustomGrid />
+    <CavasTest1 />
   )
 }
 

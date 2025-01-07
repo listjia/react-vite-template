@@ -1,11 +1,7 @@
 import "@glideapps/glide-data-grid/dist/index.css";
-
 import {
   DataEditor,
-
   GridCellKind,
-
-
 } from "@glideapps/glide-data-grid";
 
 const data = [
