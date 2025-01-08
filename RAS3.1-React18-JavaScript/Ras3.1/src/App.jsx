@@ -1,13 +1,28 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { MantineProvider } from '@mantine/core';
 
-function App() {
-  const [count, setCount] = useState(0);
+import { AuthProvider } from 'src/auth/auth-provider';
+import { ProgressBar } from 'src/components/progress-bar';
+import { usePathname } from 'src/routes/hooks';
 
+export default function App({ children }) {
+  useScrollToTop();
   return (
-    <>
-      <div className=" text-red-600">123</div>
-    </>
+    <AuthProvider>
+      <MantineProvider theme={{ fontFamily: 'Open Sans' }}>
+        <ProgressBar />
+        {children}
+      </MantineProvider>
+    </AuthProvider>
   );
 }
 
-export default App;
+function useScrollToTop() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
