@@ -7,9 +7,9 @@ import Sider from '../components/Sider';
 
 const MainLayout = ({ children }) => {
   return (
-    <Box className=" size-full ">
-      <Header fixed />
-      <Box className=" flex">
+    <Box className=" size-full  overflow-hidden ">
+      <Header />
+      <Box className=" flex relative h-screen pt-[60px]">
         <Sider />
         <MainLayoutContent>{children}</MainLayoutContent>
       </Box>

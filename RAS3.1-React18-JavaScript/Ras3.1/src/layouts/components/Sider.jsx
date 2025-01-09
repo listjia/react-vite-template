@@ -24,23 +24,31 @@ import {
 
 import { usePathname, useRouter } from '../../routes/hooks';
 
-const icons = {
-  ChartNoAxesCombined: <ChartNoAxesCombined size={20} />, // 首页
-  Layers: <Layers size={20} />, // 基础管理
+const iconProps = {
+  ChartNoAxesCombined: { size: 18, strokeWidth: 2.5, color: "#0ea5e9" },
+  Layers: { size: 18, color: "#ec4899" },
+  Pill: { size: 16 },
+  Microscope: { size: 16 },
+  // 其他图标属性...
+};
+
+export const icons = {
+  ChartNoAxesCombined: <ChartNoAxesCombined size={18} strokeWidth={2.5} color="#0ea5e9" />, // 首页
+  Layers: <Layers size={18} color="#ec4899" />, // 基础管理
   Pill: <Pill size={16} />, // 检品管理
   Microscope: <Microscope size={16} />, // 检验管理
   Database: <Database size={16} />, // 数据管理
 
-  ChartSpline: <ChartSpline size={20} />, // 图表管理
+  ChartSpline: <ChartSpline size={18} strokeWidth={2.5} color="#f97316" />, // 图表管理
   ChartCandlestick: <ChartCandlestick size={16} />, // 图表模板
   Combine: <Combine size={16} />, // 模板绑定
   ChartScatter: <ChartScatter size={16} />, // 图表生成
 
-  FileBox: <FileBox size={20} />, // 报告管理
+  FileBox: <FileBox size={18} strokeWidth={2.5} color="#22c55e" />, // 报告管理
   FileText: <FileText size={16} />, // 报告信息
   LayoutDashboard: <LayoutDashboard size={16} />, // 类型管理
 
-  LaptopMinimalCheck: <LaptopMinimalCheck size={20} />, // 系统管理
+  LaptopMinimalCheck: <LaptopMinimalCheck size={20} strokeWidth={2.5} color="#a855f7" />, // 系统管理
   LandPlot: <LandPlot size={16} />, // 位置管理
   UserRoundSearch: <UserRoundSearch size={16} />, // 人员管理
   UserCog: <UserCog size={16} />, // 角色管理
@@ -182,8 +190,15 @@ const Sider = () => {
       key={item.label}
       active={pathname === item.path}
       label={item.label}
+      style={{
+        paddingInline: '18px',
+        paddingTop: '10px',
+        color: pathname === item.path ? '#f3f4f6' : '#374151',
+        fontFamily: 'Microsoft YaHei',
+      }}
       rightSection={item.rightSection}
       leftSection={icons[item.icon]}
+      onClick={() => !item.children && router.push(item.path)}
       childrenOffset={0}
       variant="filled"
     >
@@ -194,7 +209,12 @@ const Sider = () => {
             key={child.label}
             active={pathname === child.path}
             label={child.label}
-            style={{ paddingLeft: '30px' }}
+            style={{
+              paddingLeft: '50px',
+              paddingTop: '10px',
+              color: pathname === child.path ? '#f3f4f6' : '#374151',
+              fontFamily: 'Microsoft YaHei',
+            }}
             rightSection={child.rightSection}
             leftSection={icons[child.icon]}
             onClick={() => router.push(child.path)}
@@ -204,7 +224,11 @@ const Sider = () => {
     </NavLink>
   ));
 
-  return <div className="h-[calc(100vh-60px)] overflow-y-auto  shadow min-w-56  ">{items}</div>;
+  return (
+    <div className=" h-full overflow-y-auto  border-r-2 border-r-gray-200  shadow min-w-56   ">
+      {items}
+    </div>
+  );
 };
 
 export default Sider;

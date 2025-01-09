@@ -14,7 +14,7 @@ import { usePathname } from '../hooks';
 
 const HomePage = lazy(() => import('src/pages/home'));
 const InspectionPage = lazy(() => import('src/pages/inspection'));
-const workPlacePage = lazy(() => import('src/pages/work-place'));
+const WorkPlacePage = lazy(() => import('src/pages/work-place'));
 const LoginPage = lazy(() => import('src/pages/auth'));
 
 // ----------------------------------------------------------------------
@@ -46,6 +46,6 @@ export const mainRoutes = [
   {
     path: 'system',
     element: dashboardLayout(),
-    children: [{ path: 'position', element: <workPlacePage /> }],
+    children: [{ path: 'position', element: <WorkPlacePage /> }],
   },
 ];

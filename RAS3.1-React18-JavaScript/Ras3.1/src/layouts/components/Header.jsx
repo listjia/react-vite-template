@@ -6,7 +6,7 @@ import AccountButton from './AccountButton';
 
 const Header = () => {
   return (
-    <div className=" flex min-h-[60px] bg-zinc-50 shadow-lg z-50 ">
+    <div className=" flex h-[60px] shadow-zinc-400 bg-white/90  shadow z-50 fixed top-0 left-0 w-screen ">
       <Logo />
 
       <SettingArea />
