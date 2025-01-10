@@ -4,7 +4,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router';
 
 import './index.css';
+import '@mantine/notifications/styles.css';
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css'; //if using mantine date picker features
+import 'mantine-react-table/styles.css';
 import App from './App.jsx';
 import { routesSection } from './routes/sections';
 import { ErrorBoundary } from './routes/components';

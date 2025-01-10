@@ -6,7 +6,8 @@ import MainLayout from 'src/layouts/main-layout';
 
 // import { LoadingScreen } from 'src/components/loading-screen';
 
-// import { AuthGuard } from 'src/auth/guard';
+import { AuthGuard } from 'src/auth/guard';
+import { LoadingScreen } from 'src/components/loading-screen';
 
 import { usePathname } from '../hooks';
 
@@ -23,29 +24,35 @@ function SuspenseOutlet() {
   const pathname = usePathname();
   return (
     // <Suspense key={pathname} fallback={<LoadingScreen />}>
-    <Suspense key={pathname} fallback={<div>123</div>}>
-      <Outlet />
+    <Suspense key={pathname} fallback={<LoadingScreen />}>
+      {CONFIG.auth.skip ? (
+        <Outlet />
+      ) : (
+        <AuthGuard>
+          <Outlet />
+        </AuthGuard>
+      )}
     </Suspense>
   );
 }
 
-const dashboardLayout = () => (
+const customLayout = () => (
   <MainLayout>
     <SuspenseOutlet />
   </MainLayout>
 );
 
 export const mainRoutes = [
-  { path: 'home', element: dashboardLayout(), children: [{ element: <HomePage />, index: true }] },
+  { path: 'home', element: customLayout(), children: [{ element: <HomePage />, index: true }] },
   {
     path: 'data',
-    // element: CONFIG.auth.skip ? dashboardLayout() : <AuthGuard>{dashboardLayout()}</AuthGuard>,
-    element: dashboardLayout(),
+    // element: CONFIG.auth.skip ? customLayout() : <AuthGuard>{customLayout()}</AuthGuard>,
+    element: customLayout(),
     children: [{ path: 'inspection', element: <InspectionPage /> }],
   },
   {
     path: 'system',
-    element: dashboardLayout(),
+    element: customLayout(),
     children: [{ path: 'position', element: <WorkPlacePage /> }],
   },
 ];

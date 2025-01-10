@@ -1,23 +1,29 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Navigate } from 'react-router';
 
 import { CONFIG } from 'src/global-config';
 
 // import { authRoutes } from './auth';
 import { mainRoutes } from './main';
-
+import { LoadingScreen } from 'src/components/loading-screen';
 // ----------------------------------------------------------------------
 
+const LoginPage = lazy(() => import('src/pages/auth'));
 const Page404 = lazy(() => import('src/pages/error/404'));
 
 export const routesSection = [
   {
     path: '/',
-    element: <Navigate to={CONFIG.auth.redirectPath} replace />,
+    element: (
+      <Suspense fallback={<LoadingScreen />}>
+        <Navigate to={CONFIG.auth.redirectPath} replace />
+      </Suspense>
+    ),
   },
-
-  // Auth
-  // ...authRoutes,
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
 
   // Dashboard
   ...mainRoutes,

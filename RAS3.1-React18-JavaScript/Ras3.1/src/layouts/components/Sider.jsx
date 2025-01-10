@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from '@mantine/core';
+import { NavLink, Box } from '@mantine/core';
 import {
   Pill,
   Layers,
@@ -25,15 +25,15 @@ import {
 import { usePathname, useRouter } from '../../routes/hooks';
 
 const iconProps = {
-  ChartNoAxesCombined: { size: 18, strokeWidth: 2.5, color: "#0ea5e9" },
-  Layers: { size: 18, color: "#ec4899" },
+  ChartNoAxesCombined: { size: 18, strokeWidth: 2.5, color: '#0ea5e9' },
+  Layers: { size: 18, color: '#ec4899' },
   Pill: { size: 16 },
   Microscope: { size: 16 },
   // 其他图标属性...
 };
 
 export const icons = {
-  ChartNoAxesCombined: <ChartNoAxesCombined size={18} strokeWidth={2.5} color="#0ea5e9" />, // 首页
+  ChartNoAxesCombined: <ChartNoAxesCombined size={18} strokeWidth={2.5} color="#f43f5e" />, // 首页
   Layers: <Layers size={18} color="#ec4899" />, // 基础管理
   Pill: <Pill size={16} />, // 检品管理
   Microscope: <Microscope size={16} />, // 检验管理
@@ -225,9 +225,12 @@ const Sider = () => {
   ));
 
   return (
-    <div className=" h-full overflow-y-auto  border-r-2 border-r-gray-200  shadow min-w-56   ">
+    <Box
+      className=" h-full overflow-y-auto  border-r-2 border-r-gray-200  shadow min-w-56   "
+      visibleFrom="sm"
+    >
       {items}
-    </div>
+    </Box>
   );
 };
 

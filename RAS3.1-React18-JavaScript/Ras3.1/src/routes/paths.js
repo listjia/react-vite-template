@@ -12,10 +12,10 @@ export const paths = {
   home: '/home',
   // AUTH
   auth: {
-    signIn: `${ROOTS.AUTH}/sign-in`,
-    verify: `${ROOTS.AUTH}/verify`,
-    signUp: `${ROOTS.AUTH}/sign-up`,
-    updatePassword: `${ROOTS.AUTH}/update-password`,
-    resetPassword: `${ROOTS.AUTH}/reset-password`,
+    signIn: `/login`,
+    // verify: `${ROOTS.AUTH}/verify`,
+    // signUp: `${ROOTS.AUTH}/sign-up`,
+    // updatePassword: `${ROOTS.AUTH}/update-password`,
+    // resetPassword: `${ROOTS.AUTH}/reset-password`,
   },
 };

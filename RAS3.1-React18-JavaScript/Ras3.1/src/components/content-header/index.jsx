@@ -5,7 +5,7 @@ import { LandPlot } from 'lucide-react';
 
 const ContentHeader = ({ title, icon }) => {
   return (
-    <Box className=" py-8  flex space-x-2 text-blue-500">
+    <Box className=" py-5  flex space-x-2 text-blue-500">
       <LandPlot size={28} />
       <Title order={3}>{title}</Title>
     </Box>

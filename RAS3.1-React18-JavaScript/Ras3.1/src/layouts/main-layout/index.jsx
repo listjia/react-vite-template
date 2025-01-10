@@ -9,7 +9,7 @@ const MainLayout = ({ children }) => {
   return (
     <Box className=" size-full  overflow-hidden ">
       <Header />
-      <Box className=" flex relative h-screen pt-[60px]">
+      <Box className=" flex relative h-screen pt-[60px] overflow-hidden">
         <Sider />
         <MainLayoutContent>{children}</MainLayoutContent>
       </Box>
