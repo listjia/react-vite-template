@@ -31,6 +31,7 @@ export const initConfig = {
   positionActionsColumn: 'last',
   filterFromLeafRows: true,
   localization: localization,
+  enableColumnOrdering: false,
   // enableColumnResizing: true,
   // enableRowOrdering: true, //enable
 };

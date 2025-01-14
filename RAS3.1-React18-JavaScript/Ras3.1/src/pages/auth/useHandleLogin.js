@@ -17,7 +17,7 @@ export const useLogin = () => {
       manual: true,
       onSuccess: (res) => {
         if (res && res.resCode == '1') {
-          sessionStorage.setItem(TOKEN_STORAGE_KEY, res.resStr);
+          sessionStorage.setItem(TOKEN_STORAGE_KEY, res.resStr.code);
           toast.success('服务器开小差了，请稍后尝试！');
           router.push(paths.home);
         }

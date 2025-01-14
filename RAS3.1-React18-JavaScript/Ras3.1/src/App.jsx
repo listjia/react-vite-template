@@ -1,16 +1,38 @@
 import { useEffect } from 'react';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
 import { AuthProvider } from 'src/auth/auth-provider';
 import { ProgressBar } from 'src/components/progress-bar';
 import { usePathname } from 'src/routes/hooks';
+import { Toaster } from 'sonner';
+
+const theme = createTheme({
+  fontFamily: 'Open Sans',
+  components: {
+    TextInput: {
+      styles: {
+        label: {
+          marginBottom: '10px', // 全局调整 label 的下边距
+        },
+      },
+    },
+    Select: {
+      styles: {
+        label: {
+          marginBottom: '10px', // 全局调整 label 的下边距
+        },
+      },
+    },
+  },
+});
 
 export default function App({ children }) {
   useScrollToTop();
   return (
     <AuthProvider>
-      <MantineProvider theme={{ fontFamily: 'Open Sans' }}>
+      <MantineProvider theme={theme}>
         <ProgressBar />
         {children}
+        <Toaster />
       </MantineProvider>
     </AuthProvider>
   );

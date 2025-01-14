@@ -9,7 +9,7 @@ import {
 import RowActions from './RowActions';
 import { initConfig } from './config';
 
-const CustomTable = ({ columns, data, onEdit, actions = [] }) => {
+const CustomTable = ({ columns, data, onEdit, actions = [], ...rest }) => {
   console.log(actions);
   const handlePaginationChange = (updater) => {
     console.log(updater);
@@ -19,6 +19,7 @@ const CustomTable = ({ columns, data, onEdit, actions = [] }) => {
     data,
     // showToolbarDropZone: false,
     ...initConfig,
+
     initialState: {
       expanded: true,
       density: 'xs',
@@ -59,10 +60,11 @@ const CustomTable = ({ columns, data, onEdit, actions = [] }) => {
     renderRowActions: ({ row, table }) => (
       <RowActions actions={actions} row={row} onEdit={onEdit} />
     ),
+    ...rest,
     renderTopToolbarCustomActions: ({ table }) =>
       actions.includes('add') && (
-        <Button radius={3} onClick={() => onEdit(null, 'new')}>
-          新增位置
+        <Button radius={3} onClick={() => onEdit(null, 'add')}>
+          新增一项
         </Button>
       ),
   });
