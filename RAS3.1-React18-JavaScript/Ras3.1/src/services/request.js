@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-import { notifications } from '@mantine/notifications';
-// import i18n from 'i18next';
+import { toast } from 'sonner';
 
 const service = axios.create({
   baseURL: '/api',
@@ -35,17 +33,9 @@ service.interceptors.response.use(
       } else if (error.message.indexOf(5000) > -1) {
         console.log('api请求超时');
       } else if (error.message.indexOf(500) > -1) {
-        notifications.show({
-          title: '出错了',
-          color: 'red',
-          message: error.message,
-        });
+        toast.info(error.message);
       } else {
-        notifications.show({
-          title: '出错了',
-          color: 'red',
-          message: error.message,
-        });
+        toast.error(error.message);
       }
     }
 
@@ -59,6 +49,7 @@ service.interceptors.request.use(
     const token = sessionStorage.getItem('jwt_access_token');
     if (token) {
       config.headers.Authorization = `Bearer  ${token}`;
+      config.headers.lan = 'zh-CN';
     } else {
       console.log('没有token');
       // if (config.method === 'get') {

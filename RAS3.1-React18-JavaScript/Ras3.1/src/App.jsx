@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { MantineProvider, createTheme } from '@mantine/core';
 import { AuthProvider } from 'src/auth/auth-provider';
-import { ProgressBar } from 'src/components/progress-bar';
+// import { ProgressBar } from 'src/components/progress-bar';
 import { usePathname } from 'src/routes/hooks';
 import { Toaster } from 'sonner';
 
@@ -30,7 +30,7 @@ export default function App({ children }) {
   return (
     <AuthProvider>
       <MantineProvider theme={theme}>
-        <ProgressBar />
+        {/* <ProgressBar /> */}
         {children}
         <Toaster />
       </MantineProvider>

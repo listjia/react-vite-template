@@ -1,13 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Pagination, Stack, Badge } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import CustomTable from 'src/components/custom-table';
+import CustomModal from 'src/components/custom-modal';
 import { INSPECTION_TYPES } from 'src/constants';
-import ProductCard from './ProductCard';
+import AddAndEditContent from './AddAndEditContent';
 import { useGetInspectionList } from './useLoadInspectionData';
 
 const DataContent = () => {
-  const { list } = useGetInspectionList();
-
+  const { list, refresh } = useGetInspectionList();
+  const [opened, { open, close }] = useDisclosure(false);
+  const rowDataRef = useRef();
+  const editTypeRef = useRef();
   const columns = useMemo(
     () => [
       {
@@ -50,7 +54,11 @@ const DataContent = () => {
     ],
     []
   );
-  const onClick = async (item = {}, type) => {};
+  const onClick = async (item = {}, type) => {
+    rowDataRef.current = item;
+    editTypeRef.current = type;
+    open();
+  };
   if (!list && list.length === 0) {
     return null;
   }
@@ -63,6 +71,18 @@ const DataContent = () => {
         getSubRows={(row) => row.children}
         actions={['add', 'row_add', 'row_edit', 'row_delete']}
       />
+      <CustomModal
+        opened={opened}
+        onClose={close}
+        title={INSPECTION_TYPES[editTypeRef.current] || ''}
+      >
+        <AddAndEditContent
+          rowData={rowDataRef.current}
+          onClose={close}
+          refresh={refresh}
+          type={editTypeRef.current}
+        />
+      </CustomModal>
     </>
   );
 };

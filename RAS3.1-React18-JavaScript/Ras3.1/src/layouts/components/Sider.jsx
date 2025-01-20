@@ -24,37 +24,32 @@ import {
 
 import { usePathname, useRouter } from '../../routes/hooks';
 
-const iconProps = {
-  ChartNoAxesCombined: { size: 18, strokeWidth: 2.5, color: '#0ea5e9' },
-  Layers: { size: 18, color: '#ec4899' },
-  Pill: { size: 16 },
-  Microscope: { size: 16 },
-  // 其他图标属性...
-};
+export const getIcon = (iconName, size = 16, strokeWidth = 2, color = '#78716c') => {
+  const iconMap = {
+    ChartNoAxesCombined: (
+      <ChartNoAxesCombined size={size} strokeWidth={strokeWidth} color={color} />
+    ),
+    Layers: <Layers size={size} strokeWidth={strokeWidth} color={color} />,
+    Pill: <Pill size={size} strokeWidth={strokeWidth} color={color} />,
+    Microscope: <Microscope size={size} strokeWidth={strokeWidth} color={color} />,
+    Database: <Database size={size} strokeWidth={strokeWidth} color={color} />,
+    ChartSpline: <ChartSpline size={size} strokeWidth={strokeWidth} color={color} />,
+    ChartCandlestick: <ChartCandlestick size={size} strokeWidth={strokeWidth} color={color} />,
+    Combine: <Combine size={size} strokeWidth={strokeWidth} color={color} />,
+    ChartScatter: <ChartScatter size={size} strokeWidth={strokeWidth} color={color} />,
+    FileBox: <FileBox size={size} strokeWidth={strokeWidth} color={color} />,
+    FileText: <FileText size={size} strokeWidth={strokeWidth} color={color} />,
+    LayoutDashboard: <LayoutDashboard size={size} strokeWidth={strokeWidth} color={color} />,
+    LaptopMinimalCheck: <LaptopMinimalCheck size={size} strokeWidth={strokeWidth} color={color} />,
+    LandPlot: <LandPlot size={size} strokeWidth={strokeWidth} color={color} />,
+    UserRoundSearch: <UserRoundSearch size={size} strokeWidth={strokeWidth} color={color} />,
+    UserCog: <UserCog size={size} strokeWidth={strokeWidth} color={color} />,
+    Variable: <Variable size={size} strokeWidth={strokeWidth} color={color} />,
+    ShieldCheck: <ShieldCheck size={size} strokeWidth={strokeWidth} color={color} />,
+    Component: <Component size={size} strokeWidth={strokeWidth} color={color} />,
+  };
 
-export const icons = {
-  ChartNoAxesCombined: <ChartNoAxesCombined size={18} strokeWidth={2.5} color="#f43f5e" />, // 首页
-  Layers: <Layers size={18} color="#ec4899" />, // 基础管理
-  Pill: <Pill size={16} />, // 检品管理
-  Microscope: <Microscope size={16} />, // 检验管理
-  Database: <Database size={16} />, // 数据管理
-
-  ChartSpline: <ChartSpline size={18} strokeWidth={2.5} color="#f97316" />, // 图表管理
-  ChartCandlestick: <ChartCandlestick size={16} />, // 图表模板
-  Combine: <Combine size={16} />, // 模板绑定
-  ChartScatter: <ChartScatter size={16} />, // 图表生成
-
-  FileBox: <FileBox size={18} strokeWidth={2.5} color="#22c55e" />, // 报告管理
-  FileText: <FileText size={16} />, // 报告信息
-  LayoutDashboard: <LayoutDashboard size={16} />, // 类型管理
-
-  LaptopMinimalCheck: <LaptopMinimalCheck size={20} strokeWidth={2.5} color="#a855f7" />, // 系统管理
-  LandPlot: <LandPlot size={16} />, // 位置管理
-  UserRoundSearch: <UserRoundSearch size={16} />, // 人员管理
-  UserCog: <UserCog size={16} />, // 角色管理
-  Variable: <Variable size={16} />, // 参数管理
-  ShieldCheck: <ShieldCheck size={16} />, // 审计追踪
-  Component: <Component size={16} />, // 变量管理
+  return iconMap[iconName] || null;
 };
 
 const data = [
@@ -70,6 +65,12 @@ const data = [
     description: 'Item with description',
     path: '/data',
     children: [
+      {
+        icon: 'LandPlot',
+        label: '位置管理',
+        description: 'Item with description',
+        path: '/data/position',
+      },
       {
         icon: 'Pill',
         label: '检品管理',
@@ -141,12 +142,6 @@ const data = [
     path: '/system',
     children: [
       {
-        icon: 'LandPlot',
-        label: '位置管理',
-        description: 'Item with description',
-        path: '/system/position',
-      },
-      {
         icon: 'UserRoundSearch',
         label: '人员管理',
         description: 'Item with description',
@@ -180,10 +175,8 @@ const data = [
   },
 ];
 const Sider = () => {
-  const [active, setActive] = useState(0);
   const pathname = usePathname();
   const router = useRouter();
-
   const items = data.map((item, index) => (
     <NavLink
       // href={item.path}
@@ -197,7 +190,7 @@ const Sider = () => {
         fontFamily: 'Microsoft YaHei',
       }}
       rightSection={item.rightSection}
-      leftSection={icons[item.icon]}
+      leftSection={getIcon(item.icon)}
       onClick={() => !item.children && router.push(item.path)}
       childrenOffset={0}
       variant="filled"
@@ -216,7 +209,7 @@ const Sider = () => {
               fontFamily: 'Microsoft YaHei',
             }}
             rightSection={child.rightSection}
-            leftSection={icons[child.icon]}
+            leftSection={getIcon(child.icon)}
             onClick={() => router.push(child.path)}
             variant="filled"
           />

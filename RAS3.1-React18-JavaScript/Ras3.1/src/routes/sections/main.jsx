@@ -17,6 +17,7 @@ const HomePage = lazy(() => import('src/pages/home'));
 const InspectionPage = lazy(() => import('src/pages/inspection'));
 const WorkPlacePage = lazy(() => import('src/pages/work-place'));
 const LoginPage = lazy(() => import('src/pages/auth'));
+const UserMgmtPage = lazy(() => import('src/pages/user-mgmt'));
 
 // ----------------------------------------------------------------------
 
@@ -48,11 +49,14 @@ export const mainRoutes = [
     path: 'data',
     // element: CONFIG.auth.skip ? customLayout() : <AuthGuard>{customLayout()}</AuthGuard>,
     element: customLayout(),
-    children: [{ path: 'inspection', element: <InspectionPage /> }],
+    children: [
+      { path: 'position', element: <WorkPlacePage /> },
+      { path: 'inspection', element: <InspectionPage /> },
+    ],
   },
   {
     path: 'system',
     element: customLayout(),
-    children: [{ path: 'position', element: <WorkPlacePage /> }],
+    children: [{ path: 'users', element: <UserMgmtPage /> }],
   },
 ];

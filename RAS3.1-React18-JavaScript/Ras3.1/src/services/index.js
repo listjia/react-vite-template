@@ -39,7 +39,29 @@ export async function login(obj) {
 // ---------------------------检品管理页面接口--------------------
 // 检品查询
 export async function getInspections(obj) {
-  const url = `/System/GetProductList`;
+  // const url = `/System/GetProductList`;
+  const url = `/System/GetInspectProductListTree`;
   const data = await service.get(url, { params: obj });
+  return data;
+}
+
+// 新增产品
+export async function addProduct(obj) {
+  const url = `/System/AddInspectProduct`;
+  const data = await service.post(url, obj);
+  return data;
+}
+
+// 编辑产品
+export async function editProduct(obj) {
+  const url = `/System/UpdateInspectProduct`;
+  const data = await service.post(url, obj);
+  return data;
+}
+
+// 删除产品
+export async function deleteProduct(obj) {
+  const url = `/System/DeleteInspectProduct`;
+  const data = await service.post(url, obj);
   return data;
 }

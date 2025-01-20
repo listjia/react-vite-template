@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Badge } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ACTION_TYPES } from 'src/constants';

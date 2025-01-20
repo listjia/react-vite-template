@@ -18,13 +18,12 @@ export const useLogin = () => {
       onSuccess: (res) => {
         if (res && res.resCode == '1') {
           sessionStorage.setItem(TOKEN_STORAGE_KEY, res.resStr.code);
-          toast.success('服务器开小差了，请稍后尝试！');
           router.push(paths.home);
         }
       },
       onFinally: (params, result, error) => {
         if (result) {
-          toast.success('服务器开小差了，请稍后尝试！');
+          toast.success(result?.resTipCN || '服务器开小差了，请稍后尝试！');
         } else {
           toast.error(`${result?.resTipCN || '服务器开小差了，请稍后尝试！'}`);
         }

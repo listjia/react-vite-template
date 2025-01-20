@@ -15,7 +15,11 @@ const Inspection = () => {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <ContentHeader title="检品管理" icon="LandPlot" />
+      <ContentHeader
+        title="检品管理"
+        icon="Pill"
+        customStyle={{ size: 28, strokeWidth: 2, color: '#a855f7', fontColor: 'text-purple-500' }}
+      />
 
       <Header />
 

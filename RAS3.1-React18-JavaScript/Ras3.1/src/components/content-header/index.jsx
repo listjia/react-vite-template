@@ -1,13 +1,20 @@
 import React from 'react';
 import { Box, Code, Title, MantineProvider, createTheme } from '@mantine/core';
-import { icons } from 'src/layouts/components/Sider.jsx';
-import { LandPlot } from 'lucide-react';
+import { getIcon } from 'src/layouts/components/Sider.jsx';
 
-const ContentHeader = ({ title, icon }) => {
+const ContentHeader = ({ title, icon, customStyle = {} }) => {
+  const {
+    size = 16,
+    strokeWidth = 2,
+    color = '#000000',
+    fontColor = 'text-blue-500',
+  } = customStyle;
   return (
     <Box className=" py-5  flex space-x-2 text-blue-500">
-      <LandPlot size={28} />
-      <Title order={3}>{title}</Title>
+      {getIcon(icon, size, strokeWidth, color)}
+      <Title order={3} className={fontColor}>
+        {title}
+      </Title>
     </Box>
   );
 };
