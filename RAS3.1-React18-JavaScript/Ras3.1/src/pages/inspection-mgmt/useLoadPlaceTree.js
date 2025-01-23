@@ -7,6 +7,6 @@ export const useGetPlaceTree = () => {
     const res = await getPlaceTree({ intPageIndex: 1, intPageSize: 1000 });
     return res;
   });
-  const treeList = data?.resStr?.data || [];
+  const treeList = data?.resStr || [];
   return { treeList, loading, error, refresh };
 };

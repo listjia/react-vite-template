@@ -5,7 +5,7 @@ import { CONFIG } from 'src/global-config';
 
 // import { authRoutes } from './auth';
 import { mainRoutes } from './main';
-import { LoadingScreen } from 'src/components/loading-screen';
+import { SplashScreen } from 'src/components/loading-screen';
 // ----------------------------------------------------------------------
 
 const LoginPage = lazy(() => import('src/pages/auth'));
@@ -15,7 +15,7 @@ export const routesSection = [
   {
     path: '/',
     element: (
-      <Suspense fallback={<LoadingScreen />}>
+      <Suspense fallback={<SplashScreen />}>
         <Navigate to={CONFIG.auth.redirectPath} replace />
       </Suspense>
     ),

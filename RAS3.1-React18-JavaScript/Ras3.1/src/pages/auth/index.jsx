@@ -23,8 +23,14 @@ const Login = () => {
           欢迎回到 RAS!
         </Title>
 
-        <TextInput label="工号" placeholder="请输入工号" size="md" />
-        <PasswordInput label="密码" placeholder="请输入密码" mt="md" size="md" />
+        <TextInput label="工号" placeholder="请输入工号" size="md" defaultValue="admin" />
+        <PasswordInput
+          label="密码"
+          placeholder="请输入密码"
+          mt="md"
+          size="md"
+          defaultValue="Yzj@2022"
+        />
         <Checkbox label="保持登录状态" mt="xl" size="md" />
         <Button fullWidth mt="xl" size="md" onClick={handleClick}>
           登录

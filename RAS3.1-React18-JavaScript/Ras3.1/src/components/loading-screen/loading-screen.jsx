@@ -63,7 +63,7 @@ export function LoadingScreen() {
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{
-              duration: 2,
+              duration: 1,
               delay: index * 0.5, // 每个路径的动画延迟
               ease: 'easeInOut',
               repeat: Infinity,

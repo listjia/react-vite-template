@@ -1,9 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
-import { paths } from 'src/routes/paths';
-import { useRouter, usePathname, useSearchParams } from 'src/routes/hooks';
+import { useRouter, usePathname } from 'src/routes/hooks';
 
-import { CONFIG } from 'src/global-config';
+import { SplashScreen } from 'src/components/Loading-screen';
 
 import { useAuthContext } from '../use-auth-context.js';
 
@@ -14,51 +13,39 @@ export function AuthGuard({ children }) {
 
   const pathname = usePathname();
 
-  const searchParams = useSearchParams();
-
   const { authenticated, loading } = useAuthContext();
 
   const [isChecking, setIsChecking] = useState(true);
 
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
-
+  const createRedirectPath = (currentPath) => {
+    const queryString = new URLSearchParams({ returnTo: pathname }).toString();
+    return `${currentPath}?${queryString}`;
+  };
   const checkPermissions = async () => {
     if (loading) {
       return;
     }
 
-    // if (!authenticated) {
-    //   const { method } = CONFIG.auth;
+    if (!authenticated) {
+      const signInPath = '/login';
+      const redirectPath = createRedirectPath(signInPath);
 
-    //   const signInPath = {
-    //     jwt: paths.auth.signIn,
-    //   }[method];
-    //   console.log(signInPath);
-    //   const href = `${signInPath}?${createQueryString('returnTo', pathname)}`;
+      router.replace(redirectPath);
 
-    //   router.replace(href);
-    //   return;
-    // }
+      return;
+    }
 
     setIsChecking(false);
   };
 
   useEffect(() => {
-    checkPermissions();
+    // checkPermissions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authenticated, loading]);
 
-  if (isChecking) {
-    return <div>isChecking</div>;
-  }
+  // if (isChecking) {
+  //   return <SplashScreen />;
+  // }
 
   return <>{children}</>;
 }

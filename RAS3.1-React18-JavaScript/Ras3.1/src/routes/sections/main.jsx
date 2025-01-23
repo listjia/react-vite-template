@@ -18,6 +18,8 @@ const InspectionPage = lazy(() => import('src/pages/inspection'));
 const WorkPlacePage = lazy(() => import('src/pages/work-place'));
 const LoginPage = lazy(() => import('src/pages/auth'));
 const UserMgmtPage = lazy(() => import('src/pages/user-mgmt'));
+const InspectionMgmtPage = lazy(() => import('src/pages/inspection-mgmt'));
+const SourcePage = lazy(() => import('src/pages/source'));
 
 // ----------------------------------------------------------------------
 
@@ -52,6 +54,8 @@ export const mainRoutes = [
     children: [
       { path: 'position', element: <WorkPlacePage /> },
       { path: 'inspection', element: <InspectionPage /> },
+      { path: 'test', element: <InspectionMgmtPage /> },
+      { path: 'source', element: <SourcePage /> },
     ],
   },
   {
