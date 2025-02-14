@@ -1,0 +1,14 @@
+{
+  "name": "pid",
+  "version": "1.0.0",
+  "description": "pid-test",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "chenjia",
+  "license": "ISC",
+  "dependencies": {
+    "node-pid-controller": "^1.0.1"
+  }
+}
